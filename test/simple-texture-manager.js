@@ -1,7 +1,7 @@
 var should = require('should');
 var SimpleTextureManager = require("..").SimpleTextureManager;
 
-describe("Texture Manager", function () {
+describe("Simple Texture Manager", function () {
     beforeEach(function () {
         this.tm = new SimpleTextureManager({units: 3});
     });
@@ -85,7 +85,7 @@ describe("Texture Manager", function () {
         });
     });
 
-    describe("dispose", function () {
+    describe("#dispose", function () {
         it("should free space for new textures", function () {
             var tm = this.tm;
             for (var i = 0; i < 3; i++) {
@@ -100,7 +100,7 @@ describe("Texture Manager", function () {
         })
     });
 
-    describe("get", function () {
+    describe("#get", function () {
         it("should get a previously bound texture", function () {
             var tm = this.tm;
             tm.bind("test", {fixed: true});
@@ -122,7 +122,7 @@ describe("Texture Manager", function () {
 
     });
 
-    describe("has", function () {
+    describe("#has", function () {
         it("should have a previously bound texture", function () {
             var tm = this.tm;
             tm.bind("test", {fixed: true});
