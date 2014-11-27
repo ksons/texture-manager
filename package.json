@@ -8,7 +8,7 @@
     "url": "https://github.com/ksons/texture-manager.git"
   },
   "scripts": {
-    "test": "gulp test"
+    "test": "mocha test"
   },
   "author": "Kristian Sons <kristian.sons@gmail.com>",
   "license": "MIT",
