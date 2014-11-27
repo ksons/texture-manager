@@ -1,0 +1,19 @@
+{
+  "name": "texture-manager",
+  "version": "0.1.0",
+  "description": "Utility for textures to reduce state changes",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ksons/texture-manager.git"
+  },
+  "scripts": {
+    "test": "gulp test"
+  },
+  "author": "Kristian Sons <kristian.sons@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "should": "^4.3.0"
+  },
+  "dependencies": {}
+}
