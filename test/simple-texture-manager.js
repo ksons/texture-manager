@@ -98,5 +98,49 @@ describe("Texture Manager", function () {
             slot = tm.bind(4);
             should(slot).equal(1);
         })
-    })
+    });
+
+    describe("get", function () {
+        it("should get a previously bound texture", function () {
+            var tm = this.tm;
+            tm.bind("test", {fixed: true});
+            var entry = tm.getEntry("test");
+            var olduse = entry.use = entry.use - 100;
+            should(tm.get("test")).equal(0);
+
+            entry = tm.getEntry("test");
+            should(entry.use).greaterThan(olduse);
+        });
+        it("should return 'not found' for unbound textures", function () {
+            var tm = this.tm;
+            should(tm.get("test")).equal(SimpleTextureManager.NOT_FOUND);
+            tm.bind("test", {fixed: true});
+            should(tm.get("test")).not.equal(SimpleTextureManager.NOT_FOUND);
+            tm.dispose("test");
+            should(tm.get("test")).equal(SimpleTextureManager.NOT_FOUND);
+        });
+
+    });
+
+    describe("has", function () {
+        it("should have a previously bound texture", function () {
+            var tm = this.tm;
+            tm.bind("test", {fixed: true});
+            var entry = tm.getEntry("test");
+            var olduse = entry.use = entry.use - 100;
+            should(tm.has("test")).equal(true);
+
+            entry = tm.getEntry("test");
+            should(entry.use).equal(olduse);
+        });
+        it("should return false for unbound textures", function () {
+            var tm = this.tm;
+            should(tm.has("test")).equal(false);
+            tm.bind("test", {fixed: true});
+            should(tm.has("test")).equal(true);
+            tm.dispose("test");
+            should(tm.has("test")).equal(false);
+        });
+
+    });
 });
