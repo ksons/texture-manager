@@ -1,4 +1,5 @@
 var should = require('should');
+var now = require('performance-now');
 var SimpleTextureManager = require("..").SimpleTextureManager;
 
 describe("Simple Texture Manager", function () {
@@ -19,7 +20,7 @@ describe("Simple Texture Manager", function () {
 
     describe("#bind", function () {
         it("should store and get entry", function () {
-            var slot, entry, now = Date.now();
+            var slot, entry, start = now();
             var tm = this.tm;
 
             slot = tm.bind(1);
@@ -28,7 +29,7 @@ describe("Simple Texture Manager", function () {
             entry.should.have.property("id", 1);
             entry.should.have.property("fixed", false);
             entry.should.have.property("slot", slot);
-            entry.should.have.property("use").greaterThan(now - 1);
+            entry.should.have.property("use").greaterThan(start);
 
             slot = tm.bind(2, {fixed: true});
             should(slot).equal(1);
@@ -37,7 +38,7 @@ describe("Simple Texture Manager", function () {
             entry.should.have.property("id", 2);
             entry.should.have.property("fixed", true);
             entry.should.have.property("slot", slot);
-            entry.should.have.property("use").greaterThan(now - 1);
+            entry.should.have.property("use").greaterThan(start);
 
             slot = tm.bind(2, {fixed: true});
             should(slot).equal(1);
@@ -46,7 +47,7 @@ describe("Simple Texture Manager", function () {
             entry.should.have.property("id", 2);
             entry.should.have.property("fixed", true);
             entry.should.have.property("slot", slot);
-            entry.should.have.property("use").greaterThan(now - 1);
+            entry.should.have.property("use").greaterThan(start);
 
             slot = tm.bind(3, {fixed: true});
             should(slot).equal(2);
@@ -55,7 +56,7 @@ describe("Simple Texture Manager", function () {
             entry.should.have.property("id", 3);
             entry.should.have.property("fixed", true);
             entry.should.have.property("slot", slot);
-            entry.should.have.property("use").greaterThan(now - 1);
+            entry.should.have.property("use").greaterThan(start);
         });
 
         it("should report when full", function () {
